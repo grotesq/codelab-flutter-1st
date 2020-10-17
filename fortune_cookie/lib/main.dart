@@ -40,11 +40,33 @@ class FortuneCookie extends StatefulWidget {
 
 class FortuneCookieState extends State<FortuneCookie> {
   var url = 'https://www.astrology.com/images-US/games/game-fortune-cookie-1.png';
+  var messages = [
+    '기다리던 일이 오늘 이루어질 것입니다.',
+    '건강에 유의하고 외출을 삼가세요',
+    '발 밑을 조심하세요!',
+    '금전운이 있을 날입니다',
+    '반가운 연락이 오는 날입니다',
+    '행운의 색은 핑크색이에요!',
+  ];
+  shuffle() {
+    setState(() {
+      messages.shuffle();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text( 'Fortune Cookie' )
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: shuffle,
+              child: Image.network(url),
+            ),
+            Text(messages[ 0 ])
+          ]
+        )
       )
     );
   }
